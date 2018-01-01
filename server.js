@@ -3,12 +3,13 @@ var app = express();
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-server.listen(8000, function() {
-    console.log("Server is listening at port 8000...");
+server.listen(process.env.PORT || 8000, function() {
+    console.log("Server is listening at port " + process.env.PORT + "...");
 });
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/demo.html");
+    //res.sendFile(__dirname + "/demo.html");
+	res.send("<h3>Welcome to my NodeJS server for project3</h3>");
 });
 
 var userMap = new Map();    // map này chứa những người đang online và đang vào mục forum. key = userId, value = socket.id;
